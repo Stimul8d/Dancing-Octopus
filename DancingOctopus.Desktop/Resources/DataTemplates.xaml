@@ -1,0 +1,184 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:domain="clr-namespace:DancingOctopus.Domain;assembly=DancingOctopus.Domain"
+                    xmlns:vm="clr-namespace:DancingOctopus.ViewModels;assembly=DancingOctopus.ViewModels"
+                    xmlns:b="clr-namespace:DancingOctopus.Desktop.Behaviours"
+                    xmlns:converters="clr-namespace:DancingOctopus.Desktop.Conveters">
+
+    <converters:PathToImageSourceConverter x:Key="PathToImage"/>
+    <converters:DeploymentStatusToColorConverter x:Key="StatusToColor"/>
+
+    <DataTemplate DataType="{x:Type domain:Tag}">
+        <Border Background="{Binding Color}" Opacity=".8" Padding="3" Margin="3">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource CenteredText}" Foreground="White" FontSize="10"/>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type domain:Project}">
+        <Border Background="#333" Padding="3" Margin="3" Cursor="Hand">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource CenteredText}" Foreground="White" FontSize="10"/>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ReleaseViewModel}">
+        <Border BorderBrush="#33FFFFFF" BorderThickness="1" Background="#66333333" Margin="5">
+            <Grid>
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" BorderBrush="#666" Background="#40b0e0">
+                        <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Light" TextWrapping="Wrap" Foreground="AliceBlue" Padding="5"/>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="5">
+                        <WrapPanel>
+                            <controls:ToggleSwitch IsChecked="{Binding IsFirst}" Margin="0,0,30,0"  OnLabel="first" OffLabel="first" CheckedCommand="{Binding MakeFirst}" />
+                            <controls:ToggleSwitch IsChecked="{Binding IsMiddle}" Margin="0,0,30,0"  OnLabel="middle" OffLabel="middle"/>
+                            <controls:ToggleSwitch IsChecked="{Binding IsLast}" Margin="0,0,30,0"  OnLabel="last" OffLabel="last" CheckedCommand="{Binding MakeLast}"/>
+                        </WrapPanel>
+                    </Border>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ProjectViewModel}">
+        <Border Cursor="Hand" Background="{Binding Status, Converter={StaticResource StatusToColor}}" Padding="3" Margin="3">
+            <TextBlock Text="{Binding Name}" b:Click.Command="{Binding OpenTask}" Style="{StaticResource CenteredText}" Foreground="White" FontSize="10">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        <TextBlock Text="{Binding Duration}"/>
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TenantViewModel}">
+        <Border BorderBrush="#33FFFFFF" BorderThickness="1" Background="#66333333" Margin="5">
+            <Grid>
+                <DockPanel>
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource PathToImage}}" Stretch="Uniform" AlignmentX="Right" AlignmentY="Bottom" Opacity=".3" />
+                    </DockPanel.Background>
+
+                    <Border DockPanel.Dock="Top" BorderBrush="#666" Background="#40b0e0">
+                        <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Light" TextWrapping="Wrap" Foreground="AliceBlue" Padding="5"/>
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding Tags}" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+
+                </DockPanel>
+                <Border BorderThickness="0,0,15,0"  Background="#112F93E0" BorderBrush="#992F93E0" b:Click.Command="{Binding StageForDeployment}" Style="{StaticResource AppearOnHover}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.Column="3" Fill="White" Margin="8">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Visual="{StaticResource appbar_check}" Stretch="Uniform" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:StagedTenantViewModel}">
+        <Border BorderBrush="#33FFFFFF" BorderThickness="1" Background="#66333333" Margin="5">
+            <Grid>
+                <DockPanel>
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource PathToImage}}" Stretch="Uniform" AlignmentX="Right" AlignmentY="Bottom" Opacity=".3" />
+                    </DockPanel.Background>
+
+                    <Border DockPanel.Dock="Top" BorderBrush="#666" Background="#40b0e0">
+                        <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Light" TextWrapping="Wrap" Foreground="AliceBlue" Padding="5"/>
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding Projects}" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+
+                </DockPanel>
+                <Border BorderThickness="0,0,15,0"  Background="#112F93E0" BorderBrush="#992F93E0" b:Click.Command="{Binding UnstageForDeployment}" Style="{StaticResource AppearOnHover}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.Column="3" Fill="White" Margin="8">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Visual="{StaticResource appbar_close}" Stretch="Uniform" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:DeployingTenantViewModel}">
+        <Border BorderBrush="#33FFFFFF" BorderThickness="1" Background="#66333333" Margin="5">
+            <Grid>
+                <DockPanel>
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource PathToImage}}" Stretch="Uniform" AlignmentX="Right" AlignmentY="Bottom" Opacity=".3" />
+                    </DockPanel.Background>
+
+                    <Border DockPanel.Dock="Top" BorderBrush="#666" Background="#40b0e0">
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Light" TextWrapping="Wrap" Foreground="AliceBlue" Padding="5" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding Duration}" FontSize="14" FontWeight="Light" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="AliceBlue" Padding="5"/>
+                        </WrapPanel>
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding Projects}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+
+                </DockPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CompletedTenantDeploymentViewModel}">
+        <Border BorderBrush="#33FFFFFF" BorderThickness="1" Background="{Binding Status, Converter={StaticResource StatusToColor}}" Margin="5">
+            <Grid>
+                <DockPanel>
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource PathToImage}}" Stretch="Uniform" AlignmentX="Right" AlignmentY="Bottom" Opacity=".3" />
+                    </DockPanel.Background>
+
+                    <Border DockPanel.Dock="Top" BorderBrush="#666" Background="#40b0e0">
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Light" TextWrapping="Wrap" Foreground="AliceBlue" Padding="5" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding Duration}" FontSize="14" FontWeight="Light" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="AliceBlue" Padding="5"/>
+                        </WrapPanel>
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding Projects}" Background="#AA333333">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+
+                </DockPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+
+</ResourceDictionary>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="DancingOctopus.Desktop.Views.ConfirmDeployment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:b="clr-namespace:DancingOctopus.Desktop.Behaviours"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid  DataContext="{Binding StagedTenants, Source={StaticResource Locator}}" Background="#992F93E0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="DarkGray" BorderThickness="3" 
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="10">
+                <DockPanel >
+                    <TextBlock DockPanel.Dock="Top" Text="You are about to deploy..." TextAlignment="Center" VerticalAlignment="Center" FontSize="36" TextWrapping="Wrap" />
+                    <Grid DockPanel.Dock="Bottom" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Cancel" Grid.Column="0" b:Click.Command="{Binding CancelConfirmation}"/>
+                        <Button Content="I'm Sure" Grid.Column="1" b:Click.Command="{Binding DeployTenants}"/>
+                    </Grid>
+                    <Rectangle Fill="AliceBlue" Height="50"/>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.Column="0">
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding SourceReleases.Count, StringFormat='These {0} releases...'}" FontSize="24"/>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding SourceEnvironment.Name, StringFormat='In {0}'}" FontSize="24"/>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding SourceTenant.Name, StringFormat='From {0}'}" FontSize="24"/>
+                            <ScrollViewer>
+                                <ItemsControl Grid.Column="0" ItemsSource="{Binding SourceReleases}" FontSize="24"/>
+                            </ScrollViewer>
+                        </DockPanel>
+                        <DockPanel Grid.Column="1">
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding StagedTenants.Count, StringFormat='To these {0} tenants...'}" FontSize="24"/>
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding DestinationEnvironment.Name, StringFormat='In {0}. Sure about that?'}" FontSize="24"/>
+                            <ScrollViewer>
+                                <ItemsControl ItemsSource="{Binding StagedTenants}"/>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+            </Border>
+        </Grid>
+
+    </Grid>
+</UserControl>

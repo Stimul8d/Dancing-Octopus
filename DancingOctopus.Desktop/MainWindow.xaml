@@ -1,0 +1,62 @@
+﻿<Controls:MetroWindow x:Class="DancingOctopus.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+	    xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:vm="clr-namespace:DancingOctopus.ViewModels;assembly=DancingOctopus.ViewModels"
+        xmlns:b="clr-namespace:DancingOctopus.Desktop.Behaviours"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:DancingOctopus.Desktop.Views"
+        mc:Ignorable="d"
+        Title="Dancing Octopus" MinHeight="800" MinWidth="1024" WindowState="Maximized" Icon="Assets/Icon.png" Background="White"
+        DataContext="{Binding Source={StaticResource Locator}, Path=ServerStatus}">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="{Binding Server}" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                   Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_medical_pulse}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock b:Click.Command="{Binding GoToTasks}" Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="{Binding NumberOfRunningTasks}" />
+                </StackPanel>
+            </Button>
+            <ToggleButton Content="View Log" 
+                    IsChecked="{Binding ElementName=Logs, Path=IsOpen}" Cursor="Hand"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl DataContext="{Binding Source={StaticResource Locator}, Path=Logs}">
+            <Controls:Flyout x:Name="Logs" Header="ApplicationLogs" Position="Right" Width="400">
+                <ScrollViewer>
+                    <ItemsControl Margin="10" ItemsSource="{Binding Logs}" FontSize="16"/>
+                </ScrollViewer>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+    <i:Interaction.Behaviors>
+        <Behaviours:BorderlessWindowBehavior/>
+    </i:Interaction.Behaviors>
+    <Controls:MetroWindow.Resources>
+        <DataTemplate DataType="{x:Type vm:AuthenticationViewModel}">
+            <views:Authentication/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:StagedTenantsViewModel}">
+            <views:ConfirmDeployment/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MainViewModel}">
+            <views:Main/>
+        </DataTemplate>
+    </Controls:MetroWindow.Resources>
+    <ContentControl x:Name="Root" 
+            DataContext="{Binding Source={StaticResource Locator}, Path=CurrentContent}"
+             Content="{Binding CurrentContent}"/>
+</Controls:MetroWindow>

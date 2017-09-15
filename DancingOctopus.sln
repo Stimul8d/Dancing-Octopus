@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.Desktop", "DancingOctopus.Desktop\DancingOctopus.Desktop.csproj", "{20073009-E619-41E6-9EE9-5C1E4A32D455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.Infrastructure", "DancingOctopus.Infrastructure\DancingOctopus.Infrastructure.csproj", "{CF731DA5-CD44-4BD2-B437-AB93E2E15DB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.Data.InMemory", "DancingOctopus.Data.InMemory\DancingOctopus.Data.InMemory.csproj", "{04537BC5-A5F7-4E8D-A53B-2E4146154197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.Domain", "DancingOctopus.Domain\DancingOctopus.Domain.csproj", "{CECD9000-8834-420A-976D-94522546CEB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.Composition", "DancingOctopus.Composition\DancingOctopus.Composition.csproj", "{D0A0CAE5-5376-4FAA-9CD9-523AC70FDA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.ViewModels", "DancingOctopus.ViewModels\DancingOctopus.ViewModels.csproj", "{C826AA3C-64B4-40F8-AB70-2936ABE06DAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2930CBB7-D30C-44B7-AE1F-8D10377DF398}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{754242EB-46D6-4A5B-9BE9-327271C8D393}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{9C6C4381-B7DE-485F-95A0-6289601CDB9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{027BC975-3CA2-4AFC-8C65-7CC081371319}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy.bat = Deploy.bat
+		Octo.exe = Octo.exe
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingOctopus.Data.OctoClient", "DancingOctopus.Data.OctoClient\DancingOctopus.Data.OctoClient.csproj", "{4A885949-EB46-43E7-9CD0-FF7C04689AF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20073009-E619-41E6-9EE9-5C1E4A32D455}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20073009-E619-41E6-9EE9-5C1E4A32D455}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20073009-E619-41E6-9EE9-5C1E4A32D455}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20073009-E619-41E6-9EE9-5C1E4A32D455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF731DA5-CD44-4BD2-B437-AB93E2E15DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF731DA5-CD44-4BD2-B437-AB93E2E15DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF731DA5-CD44-4BD2-B437-AB93E2E15DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF731DA5-CD44-4BD2-B437-AB93E2E15DB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04537BC5-A5F7-4E8D-A53B-2E4146154197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04537BC5-A5F7-4E8D-A53B-2E4146154197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04537BC5-A5F7-4E8D-A53B-2E4146154197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04537BC5-A5F7-4E8D-A53B-2E4146154197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECD9000-8834-420A-976D-94522546CEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECD9000-8834-420A-976D-94522546CEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECD9000-8834-420A-976D-94522546CEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECD9000-8834-420A-976D-94522546CEB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A0CAE5-5376-4FAA-9CD9-523AC70FDA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A0CAE5-5376-4FAA-9CD9-523AC70FDA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A0CAE5-5376-4FAA-9CD9-523AC70FDA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A0CAE5-5376-4FAA-9CD9-523AC70FDA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C826AA3C-64B4-40F8-AB70-2936ABE06DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C826AA3C-64B4-40F8-AB70-2936ABE06DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C826AA3C-64B4-40F8-AB70-2936ABE06DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C826AA3C-64B4-40F8-AB70-2936ABE06DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A885949-EB46-43E7-9CD0-FF7C04689AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A885949-EB46-43E7-9CD0-FF7C04689AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A885949-EB46-43E7-9CD0-FF7C04689AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A885949-EB46-43E7-9CD0-FF7C04689AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20073009-E619-41E6-9EE9-5C1E4A32D455} = {754242EB-46D6-4A5B-9BE9-327271C8D393}
+		{CF731DA5-CD44-4BD2-B437-AB93E2E15DB3} = {9C6C4381-B7DE-485F-95A0-6289601CDB9C}
+		{04537BC5-A5F7-4E8D-A53B-2E4146154197} = {2930CBB7-D30C-44B7-AE1F-8D10377DF398}
+		{CECD9000-8834-420A-976D-94522546CEB0} = {9C6C4381-B7DE-485F-95A0-6289601CDB9C}
+		{D0A0CAE5-5376-4FAA-9CD9-523AC70FDA3E} = {9C6C4381-B7DE-485F-95A0-6289601CDB9C}
+		{C826AA3C-64B4-40F8-AB70-2936ABE06DAD} = {754242EB-46D6-4A5B-9BE9-327271C8D393}
+		{4A885949-EB46-43E7-9CD0-FF7C04689AF3} = {2930CBB7-D30C-44B7-AE1F-8D10377DF398}
+	EndGlobalSection
+EndGlobal

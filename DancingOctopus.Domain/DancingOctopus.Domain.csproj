@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CECD9000-8834-420A-976D-94522546CEB0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DancingOctopus.Domain</RootNamespace>
+    <AssemblyName>DancingOctopus.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionDetails.cs" />
+    <Compile Include="Deployment.cs" />
+    <Compile Include="DeploymentEnvironment.cs" />
+    <Compile Include="DeploymentStatus.cs" />
+    <Compile Include="Events\ApplicationStarted.cs" />
+    <Compile Include="Events\DeploymentConfirmationDenied.cs" />
+    <Compile Include="Events\DeploymentConfirmed.cs" />
+    <Compile Include="Events\DeploymentRequiresConfirmation.cs" />
+    <Compile Include="Events\ProjectDeploymentCompleted.cs" />
+    <Compile Include="Events\ProjectDeploymentStarted.cs" />
+    <Compile Include="Events\ProjectDeploymentUpdated.cs" />
+    <Compile Include="Events\ReleaseMarkedFirst.cs" />
+    <Compile Include="Events\ReleaseMarkedLast.cs" />
+    <Compile Include="Events\ServerConnected.cs" />
+    <Compile Include="Events\TenantDeploymentCancelled.cs" />
+    <Compile Include="Events\TenantDeploymentCompleted.cs" />
+    <Compile Include="Events\TenantDeploymentQueued.cs" />
+    <Compile Include="Events\TenantDeploymentResultAcknowledged.cs" />
+    <Compile Include="Events\TenantStaged.cs" />
+    <Compile Include="Events\TenantUnstaged.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Release.cs" />
+    <Compile Include="ServerStatus.cs" />
+    <Compile Include="Services\ICheckConnections.cs" />
+    <Compile Include="Services\IGetReleases.cs" />
+    <Compile Include="Services\IGetTenantProjects.cs" />
+    <Compile Include="Services\IGetEnvironments.cs" />
+    <Compile Include="Services\IGetServerStatus.cs" />
+    <Compile Include="Services\IGetTenants.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="DeploymentTask.cs" />
+    <Compile Include="Tenant.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DancingOctopus.Infrastructure\DancingOctopus.Infrastructure.csproj">
+      <Project>{cf731da5-cd44-4bd2-b437-ab93e2e15db3}</Project>
+      <Name>DancingOctopus.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
